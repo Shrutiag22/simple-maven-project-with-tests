@@ -5,7 +5,7 @@ pipeline{
     stage('Build Maven'){
       environment {
         mvnHome = tool 'M3'
-        def v = version()
+        v = version()
       }
       steps {
         script {
@@ -22,8 +22,10 @@ pipeline{
 
     stage('output'){
       steps {
-        if (v) {
+        script {
+          if (v) {
           echo "Building version ${v}"
+          }
         }
       }
     }
