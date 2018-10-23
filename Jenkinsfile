@@ -5,7 +5,6 @@ pipeline{
     stage('Build Maven'){
       environment {
         mvnHome = tool 'M3'
-        v = version()
       }
       steps {
         script {
@@ -18,17 +17,16 @@ pipeline{
 
     stage('output'){
       steps {
-        script {
-          if (v) {
-          echo "Building version ${v}"
-          }
-        }
+       
+          version()
+        
       }
     }
   }
 }
   
-version() {
+void version() {
     matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
     matcher ? matcher[0][1] : null
+    echo 'Building version ${matcher}'
 }
