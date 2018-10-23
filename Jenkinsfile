@@ -26,6 +26,6 @@ pipeline{
 }
   
 void version() {
-    matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
-    echo "Building version ${matcher[0][1]}"
+    def m = readFile('pom.xml') =~ '<version>(.+)</version>'
+    echo "Building version ${m[0][1]}"
 }
