@@ -17,13 +17,15 @@ pipeline{
 
     stage('output'){
       steps {
-        version()
+        version(readFile('pom.xml'))
       }
     }
   }
 }
 
-void version() {
-    def m = readFile('pom.xml') =~ '<version>(.+)</version>'
-    echo "Building version ${m[0][1]}"
+@NonCPS  
+void version(text) {
+    def m = text =~ '<version>(.+)</version>'
+    m ? m[0][1] : null
+    echo "Building version ${m}"
 }
