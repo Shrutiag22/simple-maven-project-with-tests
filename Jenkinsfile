@@ -1,7 +1,7 @@
 pipeline{
   agent any
   environment {
-  mvnHome = "tool 'M3'"
+  mvnHome = tool 'M3'
 }
   stages {
     stage('Build Maven'){
