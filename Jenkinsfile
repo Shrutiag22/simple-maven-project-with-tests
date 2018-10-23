@@ -26,6 +26,5 @@ pipeline{
 @NonCPS  
 void version(text) {
     def m = text =~ '<version>(.+)</version>'
-    m ? m[0][1] : null
-    echo "Building version ${m}"
+    echo "Building version ${m[0][1]}"
 }
