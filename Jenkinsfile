@@ -28,5 +28,5 @@ pipeline{
 void version() {
     matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
     matcher ? matcher[0][1] : null
-    echo 'Building version ${matcher}'
+    echo "Building version ${matcher}"
 }
