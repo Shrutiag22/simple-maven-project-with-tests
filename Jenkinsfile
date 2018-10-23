@@ -23,7 +23,6 @@ pipeline{
   }
 }
 
-@NonCPS  
 void version() {
     def m = readFile('pom.xml') =~ '<version>(.+)</version>'
     echo "Building version ${m[0][1]}"
