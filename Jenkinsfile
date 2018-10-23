@@ -8,10 +8,11 @@ pipeline{
       steps {
         sh "${mvnHome}/bin/mvn -B -Dmaven.test.failure.ignore verify"
       }
+      input {
+        message 'Ready to go?'
+      }
     }
-    input {
-      message 'Ready to go?'
-    }
+    
     stage('Archive artifacts'){
       steps{
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
