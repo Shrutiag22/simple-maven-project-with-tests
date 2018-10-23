@@ -26,7 +26,6 @@ pipeline{
 @NonCPS  
 void version() {
     def m = readFile('pom.xml') =~ '<version>(.+)</version>'
-    if (m){
-      echo "Building version ${m[0][1]}"
-    }
+    m ? m[0][1] : null
+    echo "Building version ${m}"
 }
