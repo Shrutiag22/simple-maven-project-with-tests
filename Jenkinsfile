@@ -31,7 +31,7 @@ pipeline{
     }
 
     stage('Example'){
-      stesp{
+      steps{
         echo "Running ${env.BUILD_ID} on ${env.JOB_NAME}"
       }
     }
