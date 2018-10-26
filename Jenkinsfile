@@ -30,6 +30,12 @@ pipeline{
       }
     }
 
+    stage('Example'){
+      stesp{
+        echo "Running ${env.BUILD_ID} on ${env.JOB_NAME}"
+      }
+    }
+    
     stage('output'){
       steps {
         version(readFile('pom.xml'))
