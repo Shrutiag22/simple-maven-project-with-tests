@@ -8,7 +8,7 @@ pipeline{
       }
       steps {
         script {
-          sh "${mvnHome}/bin/mvn -B -Dmaven.test.failure.ignore verify" 
+          sh "${mvnHome}/bin/mvn -B verify" 
         }
       }
     }
@@ -24,22 +24,22 @@ pipeline{
       }
     }
 
-    stage('Test'){
-      steps{
-        junit testResults: '**/target/surefire-reports/TEST-*.xml'
-      }
-    }
-
     stage('Example'){
       steps{
         echo "Running ${env.BUILD_ID} on ${env.JOB_NAME}"
       }
     }
-    
+
     stage('output'){
       steps {
         version(readFile('pom.xml'))
       }
+    }
+  }
+
+  post{
+    always{
+      junit testResults: '**/target/surefire-reports/TEST-*.xml'
     }
   }
 }
