@@ -8,7 +8,7 @@ pipeline{
       }
       steps {
         script {
-          sh "${mvnHome}/bin/mvn -B verify" 
+          sh "${mvnHome}/bin/mvn -B -Dmaven.test.failure.ignore verify" 
         }
       }
     }
